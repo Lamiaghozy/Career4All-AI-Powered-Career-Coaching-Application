@@ -1,0 +1,29 @@
+{
+  "AccessControlList": [
+    {
+      "Name": "MedicalCoursesAccess",
+      "Description": "Restrict access to medical course files for authorized Career Coaches only.",
+      "Resources": [
+        {
+          "Bucket": "coaching-catalogues",
+          "Prefix": "medicine/"
+        }
+      ],
+      "Principals": [
+        {
+          "Type": "IAMIdentityCenterGroup",
+          "Name": "CareerCoaches"
+        }
+      ],
+      "Conditions": {
+        "StringEquals": {
+          "aws:PrincipalTag/Expertise": [
+            "Medical",
+            "Pediatrics",
+            "ChildCare"
+          ]
+        }
+      }
+    }
+  ]
+}
